@@ -1,0 +1,40 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use Illuminate\Http\Request;
+use App\Models\User;
+
+class RegistrationController extends Controller
+{
+    public function index()
+    {
+        return view("auth.registration");
+    }
+
+    public function register(Request $request)
+    {
+        $request->validate([
+            'name'=>'required',
+            'email'=>'required|email:users',
+            'password'=>'required|min:8',
+            'role' => 'required|in:admin,lineman',
+            'status' => 'required|in:active,inactive',
+        ]);
+
+        $user = new User();
+        $user->name = $request->name;
+        $user->email = $request->email;
+        $user->password = $request->password;
+        $user->role = $request->role;
+        $user->status = $request->status;
+
+        $result = $user->save();
+
+        if ($result) {
+            return back()->with('success','You have registered successfully.');
+        } else {
+            return back()->with('fail','Something wrong!');
+        }
+    }
+}
