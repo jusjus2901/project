@@ -2,6 +2,7 @@
 
 namespace App\Http\Middleware;
 
+use Illuminate\Support\Facades\Auth;
 use Closure;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -15,8 +16,8 @@ class AuthCheck
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if(!Session()->has('authId')){
-            return redirect('login')->with('fail','You have to login first.');
+        if(Auth::guest()){
+            return redirect('/')->with('fail','You have to login first.');
         }
         return $next($request);
     }

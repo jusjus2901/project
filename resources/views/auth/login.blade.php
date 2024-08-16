@@ -9,14 +9,8 @@
                 <div class="d-flex justify-content-center align-items-center" style="min-height: 100vh;">
                     <div class="card" style="width: 600px; background-color: #f5f5f5; border-radius: 15px">
                         <div class="card-header text-center" style="padding-top: 15px; padding-bottom: 15px;">
-                            <div style="display: flex; flex-direction: column; align-items: center;">
-                                <img src="{{ asset('img/flash 1.png') }}" alt="Logo" style="width: 20px; height: 20px; margin-bottom: 5px;">
-                                <div>
-                                    <strong>{{ __('Electric Cooperative') }}</strong>
-                                    <br>
-                                    <strong>{{ __('System') }}</strong>
-                                </div>
-                            </div>
+                            <img src="{{ asset('img/flash 1.png') }}" alt="Logo" style="width: 20px; height: 20px; middle; margin-right: 8px;">
+                            <strong>{{ __('Electric Cooperative System') }}</strong>
                         </div>
                         <div class="card-body">
                             <form method="POST" action="{{ route('login') }}">

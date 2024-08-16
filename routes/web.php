@@ -32,4 +32,4 @@ Route::middleware(AuthCheck::class)->group(function () {
 });
 
 // Protect logout route with auth middleware
-Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
+Route::post('/logout', [LoginController::class, 'logout'])->name('logout');

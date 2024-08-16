@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
+use Illuminate\Database\UniqueConstraintViolationException;
 
 class RegistrationController extends Controller
 {
@@ -29,12 +30,18 @@ class RegistrationController extends Controller
         $user->role = $request->role;
         $user->status = $request->status;
 
-        $result = $user->save();
+        try {
+            $result = $user->save();
 
-        if ($result) {
-            return back()->with('success','You have registered successfully.');
-        } else {
-            return back()->with('fail','Something wrong!');
+            if ($result) {
+                return back()->with('success','You have registered successfully.');
+            } else {
+                return back()->with('fail','Something wrong!');
+            }
+        } catch (UniqueConstraintViolationException $e) {
+            return back()->withErrors(['error' => 'Email address already exists']);
+        } catch (\Illuminate\Database\QueryException $e) {
+            return back()->withErrors(['error' => $e->getMessage()]);
         }
     }
 }

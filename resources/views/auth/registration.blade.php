@@ -6,16 +6,28 @@
 <div class="card-header">{{ __('Register') }}</div>
 <form method="POST" action="{{ route('registration.post') }}" enctype="multipart/form-data">
   @csrf
-  @if (Session::has('success'))
-      <div class="alert alert-success">
-          {{Session::get('success')}}
-      </div>
-  @endif
-  @if (Session::has('fail'))
-    <div class="alert alert-danger">
-        {{Session::get('fail')}}
+  @if (session('success'))
+    <div class="alert alert-success">
+        {{ session('success') }}
     </div>
   @endif
+
+  @if (session('fail'))
+    <div class="alert alert-danger">
+        {{ session('fail') }}
+    </div>
+  @endif
+
+  @if ($errors->any())
+    <div class="alert alert-danger">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+  @endif
+
   <div class="form-group row">
       <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
 
