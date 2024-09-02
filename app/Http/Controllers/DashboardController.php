@@ -8,6 +8,7 @@ class DashboardController extends Controller
 {
     public function index()
     {
+        //dd(Auth::check());
         return view('auth.dashboard');
     }
 }

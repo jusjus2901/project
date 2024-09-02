@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Middleware\CheckRole;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\UsersController;
 use App\Http\Controllers\TicketsController;
@@ -24,12 +25,15 @@ Route::middleware(AlreadyLoggedIn::class)->group(function () {
     Route::get('/password/reset/{token}', [ResetPasswordController::class, 'showResetForm'])->name('password.reset');
     Route::post('/password/reset', [ResetPasswordController::class, 'reset'])->name('password.update');
 });
-Route::middleware(AuthCheck::class)->group(function () {
+Route::middleware(AuthCheck::class, CheckRole::class. ':admin')->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
     Route::get('/users', [UsersController::class, 'index'])->name('users');
-    Route::get('/tickets', [TicketsController::class, 'index'])->name('tickets');
+    Route::get('/admin/tickets', [TicketsController::class, 'index'])->name('admin-tickets');
     Route::get('/reports', [ReportsController::class, 'index'])->name('reports');
+});
+Route::middleware([AuthCheck::class, CheckRole::class.':lineman'])->group(function () {
+    Route::get('/tickets', [TicketsController::class, 'index'])->name('tickets');
 });
 
 // Protect logout route with auth middleware
-Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
+    Route::post('/logout', [LoginController::class, 'logout'])->name('logout');

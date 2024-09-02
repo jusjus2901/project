@@ -11,18 +11,19 @@
                 </ul>
 
                 <!-- Right Side Of Navbar -->
-                <ul class="navbar-nav ms-auto">
-                    <!-- Authentication Links -->
+                <ul class="navbar-nav ms-auto tw-me-12 tw-pt-2.5">
                     @guest
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('logout') }}">{{ __('Logout') }}</a>
                         </li>
                     @else
                         <li class="nav-item dropdown">
-                            <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                {{ Auth::user()->name }}
+                            <a id="navbarDropdown" class="nav-link dropdown-toggle d-flex align-items-center" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                <div class="rounded-full bg-gray-500 text-white flex items-center justify-center text-sm"
+                                    style="width: 40px; height: 40px; background-color: #6B7280; border-radius: 50%;">
+                                    {{ substr(Auth::user()->name, 0, 1) }}
+                                </div>
                             </a>
-
                             <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                                 <a class="dropdown-item" href="{{ route('logout') }}"
                                     onclick="event.preventDefault(); document.getElementById('logout-form').submit();">

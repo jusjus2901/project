@@ -8,9 +8,9 @@
             <div class="col-md-8">
                 <div class="d-flex justify-content-center align-items-center" style="min-height: 100vh;">
                     <div class="card" style="width: 600px; background-color: #f5f5f5; border-radius: 15px">
-                        <div class="card-header text-center" style="padding-top: 15px; padding-bottom: 15px;">
-                            <img src="{{ asset('img/flash 1.png') }}" alt="Logo" style="width: 20px; height: 20px; middle; margin-right: 8px;">
-                            <strong>{{ __('Electric Cooperative System') }}</strong>
+                        <div class="card-header text-center d-flex align-items-center justify-content-center">
+                            <img src="{{ asset('img/flash 1.png') }}" alt="Logo" class="me-2" style="width: 25px; height: 25px;">
+                            <span class="tw tw-font-bold tw-font-sans tw-mt-4 tw-mb-4 tw-text-[20px]">{{ __('Electric Cooperative System') }}</span>
                         </div>
                         <div class="card-body">
                             <form method="POST" action="{{ route('login') }}">

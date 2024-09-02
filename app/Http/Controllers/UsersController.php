@@ -16,7 +16,7 @@ class UsersController extends Controller
                 'role' => 'Role',
                 'status' => 'Status',
                 'fullinformation' => 'Full Information',
-                'action' => 'Action',
+                'action' => 'Actions',
             ],
             'allLineMan' => $allLineman,
         ]);
